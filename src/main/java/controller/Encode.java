@@ -46,7 +46,7 @@ public class Encode{
         String e = ht.encode();
 
         // save encoded output to zip file
-        try(FileOutputStream fos = new FileOutputStream("E:/Sem8/File Compressor/src/main/resources/compress.zip");
+        try(FileOutputStream fos = new FileOutputStream("E:/Sem8/Input/compressedFile.zip");
             ZipOutputStream zos = new ZipOutputStream(fos)){
 
             ZipEntry entry = new ZipEntry("E:/Sem8/File Compressor/src/main/resources/exp.txt");

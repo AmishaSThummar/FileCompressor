@@ -29,11 +29,16 @@ public class Decode {
         String entryName = "E:/Sem8/File Compressor/src/main/resources/exp.txt";
 
         try(ZipFile zipFile = new ZipFile(zipFilePath)){
+
+            System.out.println("Inside 1st try");
             ZipEntry entry = zipFile.getEntry(entryName);
 
             if(entry != null){
                 try(InputStream inputStream = zipFile.getInputStream(entry);
                     ByteArrayOutputStream baos = new ByteArrayOutputStream()){
+
+                    System.out.println("Inside 2nd try");
+
                     byte[] buffer = new byte[1024];
                     int bytesRead;
                     while((bytesRead = inputStream.read(buffer)) != -1){
@@ -45,14 +50,16 @@ public class Decode {
                     Huffman ht = new Huffman(extractedString, true);
                     ht.hmapCodeR = hashMapR;
                     String outpuString = ht.decode();
+                    System.out.println(outpuString);
                     String outputFilePath = "E:/Sem8/File Compressor/src/main/resources/outputFile.txt";
                     try(BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath))){
-//                        Files.writeString(Paths.get("outputFile.txt"), outpuString, StandardCharsets.UTF_8);
+
                         writer.write((outpuString));
                     }
                     catch(IOException ex){
-
+                        ex.printStackTrace();
                     }
+                    System.out.println("File generated successfully");
                 }
             }
         }
